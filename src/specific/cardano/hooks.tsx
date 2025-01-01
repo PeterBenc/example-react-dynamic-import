@@ -1,0 +1,17 @@
+import { useQuery } from "react-query";
+import { getBalance } from "./wallet";
+
+export const useCardanoBlockHeight = () => {
+  return useQuery("cardanoBlockHeight", () => {
+    return 5000000; // Mock block height for Cardano
+  });
+};
+
+export const cardanoBalanceQueryOptions = {
+  queryKey: "cardanoBalance",
+  queryFn: getBalance, // Mock balance for Cardano
+};
+
+export const useCardanoBalance = () => {
+  return useQuery({ ...cardanoBalanceQueryOptions });
+};
