@@ -11,7 +11,7 @@ export const useCardanoBlockHeight = () => {
 
 export const cardanoBalanceQueryOptions = {
   queryKey: "cardanoBalance",
-  queryFn: getBalance, // Mock balance for Cardano
+  queryFn: async () => (await import("./wallet")).getBalance(),
 };
 
 export const useCardanoBalance = () => {

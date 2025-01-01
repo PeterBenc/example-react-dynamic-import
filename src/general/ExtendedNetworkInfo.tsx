@@ -1,7 +1,13 @@
-import CardanoExtendedNetworkInfo from "../specific/cardano/ExtendedNetworkInfo";
-import SolanaExtendedNetworkInfo from "../specific/solana/ExtendedNetworkInfo";
+import { FullScreenLoading } from "../generic/FullScreenLoading";
 import { Blockchain } from "./blockchains";
-import React from "react";
+import React, { Suspense } from "react";
+
+const SolanaExtendedNetworkInfo = React.lazy(
+  () => import("../specific/solana/ExtendedNetworkInfo")
+);
+const CardanoExtendedNetworkInfo = React.lazy(
+  () => import("../specific/cardano/ExtendedNetworkInfo")
+);
 
 export const ExtendedNetworksInfo = ({
   shouldShowExtendedNetworkInfo,
@@ -9,20 +15,22 @@ export const ExtendedNetworksInfo = ({
   shouldShowExtendedNetworkInfo: Record<Blockchain, boolean>;
 }) => {
   return (
-    <ul>
-      {Object.entries(shouldShowExtendedNetworkInfo).map(
-        ([key, value], index) => {
-          if (!value) return null;
-          switch (key) {
-            case "cardano":
-              return <CardanoExtendedNetworkInfo key={index} />;
-            case "solana":
-              return <SolanaExtendedNetworkInfo key={index} />;
-            default:
-              return null;
+    <Suspense fallback={<FullScreenLoading />}>
+      <ul>
+        {Object.entries(shouldShowExtendedNetworkInfo).map(
+          ([key, value], index) => {
+            if (!value) return null;
+            switch (key) {
+              case "cardano":
+                return <CardanoExtendedNetworkInfo key={index} />;
+              case "solana":
+                return <SolanaExtendedNetworkInfo key={index} />;
+              default:
+                return null;
+            }
           }
-        }
-      )}
-    </ul>
+        )}
+      </ul>
+    </Suspense>
   );
 };
