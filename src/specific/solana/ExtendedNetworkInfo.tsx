@@ -1,5 +1,7 @@
 import React from "react";
 import { BoldLabel } from "../../generic";
+import { printBundleSizes } from "../../utils";
+printBundleSizes();
 
 export const SolanaExtendedNetworkInfo = () => {
   return (

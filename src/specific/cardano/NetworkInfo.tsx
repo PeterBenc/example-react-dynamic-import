@@ -1,6 +1,8 @@
 import React from "react";
 import { BoldLabel } from "../../generic";
 import { useCardanoBlockHeight } from "./hooks";
+import { printBundleSizes } from "../../utils";
+printBundleSizes();
 
 export const CardanoNetworkInfo = () => {
   const { data: blockHeight } = useCardanoBlockHeight();

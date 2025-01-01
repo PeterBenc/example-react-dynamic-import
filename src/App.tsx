@@ -3,6 +3,9 @@ import "./App.css";
 import { Main } from "./general";
 import { BlockchainsEnabledProvider } from "./general/blockchains";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { printBundleSizes } from "./utils";
+
+printBundleSizes();
 
 // Initialize the QueryClient
 const queryClient = new QueryClient();

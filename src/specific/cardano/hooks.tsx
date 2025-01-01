@@ -1,5 +1,7 @@
 import { useQuery } from "react-query";
 import { getBalance } from "./wallet";
+import { printBundleSizes } from "../../utils";
+printBundleSizes();
 
 export const useCardanoBlockHeight = () => {
   return useQuery("cardanoBlockHeight", () => {
