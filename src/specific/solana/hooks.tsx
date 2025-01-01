@@ -11,7 +11,7 @@ export const useSolanaBlockHeight = () => {
 
 export const solanaBalanceQueryOptions = {
   queryKey: "solanaBalance",
-  queryFn: getBalance, // Mock balance for Solana
+  queryFn: async () => (await import("./wallet")).getBalance(),
 };
 
 export const useSolanaBalance = () => {
