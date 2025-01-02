@@ -1,7 +1,6 @@
-import CardanoExtendedNetworkInfo from "../specific/cardano/ExtendedNetworkInfo";
-import SolanaExtendedNetworkInfo from "../specific/solana/ExtendedNetworkInfo";
+import { getCardano, getSolana } from "./getBlockchain";
 import { Blockchain } from "./blockchains";
-import React from "react";
+import React, { use } from "react";
 
 export const ExtendedNetworksInfo = ({
   shouldShowExtendedNetworkInfo,
@@ -14,9 +13,13 @@ export const ExtendedNetworksInfo = ({
         ([key, value], index) => {
           if (!value) return null;
           switch (key) {
-            case "cardano":
+            case "cardano": {
+              const { CardanoExtendedNetworkInfo } = use(getCardano());
               return <CardanoExtendedNetworkInfo key={index} />;
+            }
+
             case "solana":
+              const { SolanaExtendedNetworkInfo } = use(getSolana());
               return <SolanaExtendedNetworkInfo key={index} />;
             default:
               return null;
