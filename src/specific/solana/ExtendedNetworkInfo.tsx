@@ -3,7 +3,7 @@ import { BoldLabel } from "../../generic";
 import { printBundleSizes } from "../../utils";
 printBundleSizes();
 
-const SolanaExtendedNetworkInfo = () => {
+export const SolanaExtendedNetworkInfo = () => {
   return (
     <div>
       <BoldLabel label="Solana" />: {"extended Solana network info"}

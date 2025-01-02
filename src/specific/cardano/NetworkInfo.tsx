@@ -4,7 +4,7 @@ import { useCardanoBlockHeight } from "./hooks";
 import { printBundleSizes } from "../../utils";
 printBundleSizes();
 
-const CardanoNetworkInfo = () => {
+export const CardanoNetworkInfo = () => {
   const { data: blockHeight } = useCardanoBlockHeight();
   return (
     <div>
