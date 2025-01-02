@@ -1,7 +1,6 @@
-import CardanoNetworkInfo from "../specific/cardano/NetworkInfo";
-import SolanaNetworkInfo from "../specific/solana/NetworkInfo";
+import { use } from "react";
+import { getCardano, getSolana } from "./getBlockchain";
 import { Blockchain } from "./blockchains";
-import React from "react";
 
 export const NetworksInfo = ({
   blockchains,
@@ -16,7 +15,8 @@ export const NetworksInfo = ({
       <ul>
         {blockchains.map((item, index) => {
           switch (item) {
-            case "cardano":
+            case "cardano": {
+              const { CardanoNetworkInfo } = use(getCardano());
               return (
                 <>
                   <CardanoNetworkInfo key={index} />
@@ -27,8 +27,10 @@ export const NetworksInfo = ({
                   </button>
                 </>
               );
+            }
 
-            case "solana":
+            case "solana": {
+              const { SolanaNetworkInfo } = use(getSolana());
               return (
                 <>
                   <SolanaNetworkInfo key={index} />
@@ -39,6 +41,7 @@ export const NetworksInfo = ({
                   </button>
                 </>
               );
+            }
 
             default:
               return null;

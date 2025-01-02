@@ -1,26 +1,34 @@
 import { useQueries, useQuery } from "react-query";
-import { cardanoBalanceQueryOptions } from "../specific/cardano/hooks";
-import { solanaBalanceQueryOptions } from "../specific/solana/hooks";
 import { Blockchain } from "./blockchains";
+import { getCardano, getSolana } from "./getBlockchain";
+import { use } from "react";
 
 export const useAsset = (blockchain: Blockchain) => {
-  const queriesOptions = {
-    cardano: cardanoBalanceQueryOptions,
-    solana: solanaBalanceQueryOptions,
+  const getQueryOptions = () => {
+    switch (blockchain) {
+      case "cardano":
+        return use(getCardano()).cardanoBalanceQueryOptions;
+      case "solana":
+        return use(getSolana()).solanaBalanceQueryOptions;
+    }
   };
 
-  return useQuery(queriesOptions[blockchain]);
+  return useQuery(getQueryOptions());
 };
 
 export const useTotalBalance = (enabledBlockchains: Blockchain[]) => {
-  const queriesOptions = {
-    cardano: cardanoBalanceQueryOptions,
-    solana: solanaBalanceQueryOptions,
+  const getQueryOptions = (blockchain: Blockchain) => {
+    switch (blockchain) {
+      case "cardano":
+        return use(getCardano()).cardanoBalanceQueryOptions;
+      case "solana":
+        return use(getSolana()).solanaBalanceQueryOptions;
+    }
   };
 
   const queries = useQueries(
-    Object.values(enabledBlockchains).map(
-      (blockchain) => queriesOptions[blockchain]
+    Object.values(enabledBlockchains).map((blockchain) =>
+      getQueryOptions(blockchain)
     )
   );
 
