@@ -9,11 +9,11 @@ export const useSolanaBlockHeight = () => {
   });
 };
 
-export const solanaBalanceQueryOptions = {
+export const balanceQueryOptions = {
   queryKey: "solanaBalance",
   queryFn: getBalance, // Mock balance for Solana
 };
 
 export const useSolanaBalance = () => {
-  return useQuery({ ...solanaBalanceQueryOptions });
+  return useQuery({ ...balanceQueryOptions });
 };

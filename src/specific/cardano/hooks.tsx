@@ -9,11 +9,11 @@ export const useCardanoBlockHeight = () => {
   });
 };
 
-export const cardanoBalanceQueryOptions = {
+export const balanceQueryOptions = {
   queryKey: "cardanoBalance",
   queryFn: getBalance, // Mock balance for Cardano
 };
 
 export const useCardanoBalance = () => {
-  return useQuery({ ...cardanoBalanceQueryOptions });
+  return useQuery({ ...balanceQueryOptions });
 };

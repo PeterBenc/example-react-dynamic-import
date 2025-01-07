@@ -3,7 +3,7 @@ import { BoldLabel } from "../../generic";
 import { printBundleSizes } from "../../utils";
 printBundleSizes();
 
-export const CardanoExtendedNetworkInfo = () => {
+export const ExtendedNetworkInfo = () => {
   return (
     <div>
       <BoldLabel label="Cardano" />: {"extended Cardano network info"}
@@ -11,4 +11,4 @@ export const CardanoExtendedNetworkInfo = () => {
   );
 };
 
-export default CardanoExtendedNetworkInfo;
+export default ExtendedNetworkInfo;
